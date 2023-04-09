@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+</head>
+<body>
+  <label for="staff-choice">スタッフを選択してください</label>
+  <input list="staffs" id="staff-choice" name="staff-choice">
+
+  <datalist id="staffs">
+    <? const id_and_staffs = G_var.staffs_id_range.getValues(); ?>
+
+    <? 
+      for (var i = 0; i < id_and_staffs.length; i++){
+        if(id_and_staffs[i][1] == ""){
+          break;
+        }; 
+      ?>
+    <option value="<?= id_and_staffs[i] ?>">
+      <? } ?>
+  </datalist>
+  <input type="submit" value="決定" onclick="submit_select()">
+  <script>
+    const submit_select = () => {
+      const target_element = document.getElementById( 'staff-choice' );
+      google.script.run.apply_value( target_element.value );
+    }
+  </script>
+
+</body>
+
+</html>
